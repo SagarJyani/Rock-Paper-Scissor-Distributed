@@ -6,7 +6,7 @@
 
 /**
  *
- * @author vatsalsmacbook
+ * @author Sagar Jyani
  */
 public interface RPSIntf extends java.rmi.Remote{
 //    handle global variables and caccept user inputs
