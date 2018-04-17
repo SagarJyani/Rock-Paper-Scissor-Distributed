@@ -10,7 +10,7 @@
  */
 public interface RPSIntf extends java.rmi.Remote{
 //    handle global variables and caccept user inputs
-    public void register(char handPlayed, int id) throws java.rmi.RemoteException;
+    public int register(char handPlayed) throws java.rmi.RemoteException;
     public boolean handPlayed()throws java.rmi.RemoteException;
     public String getResult(int id)throws java.rmi.RemoteException;
 

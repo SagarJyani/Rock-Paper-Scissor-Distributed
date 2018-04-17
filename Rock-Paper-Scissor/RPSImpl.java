@@ -24,9 +24,13 @@ public class RPSImpl extends java.rmi.server.UnicastRemoteObject implements RPSI
         playerHand[1] = 0;
     }
     
-    public void register(char handPlayed, int id) throws RemoteException {
-        playerHand[id] = handPlayed;
+    public int register(char handPlayed) throws RemoteException {
+        int id=0;
+        if(playerHand[0]==0) {playerHand[0]=handPlayed;id=0;}
+        else {playerHand[1]=handPlayed;id=1;}
+        // playerHand[id] = handPlayed;
         if (playerHand[0]!=0 && playerHand[1]!=0)   play();
+        return id;
     }
     
     public void play() throws RemoteException {
@@ -50,7 +54,10 @@ public class RPSImpl extends java.rmi.server.UnicastRemoteObject implements RPSI
        seenResult[id] = true;
        if(seenResult[0]&&seenResult[1]) clear();
        System.out.println(Arrays.toString(seenResult));
-       return " Match "+ (win==0?("Won by Player "+0):(win==1?("Won by Player "+1):" tied"));
+       if(win<0) return "Match Tied";
+       if(id==win) return "You won";
+       return "You Lose";
+       // return " Match "+ (win==0?("Won by Player "+0):(win==1?("Won by Player "+1):" tied"));
     }
     
     public static int calculate() {
